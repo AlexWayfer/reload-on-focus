@@ -26,6 +26,14 @@ Examples:
 
 `pnpm run lint` to lint docs, styles and scripts.
 
+### Packing
+
+`pnpm run pack` to pack the extension into ZIP-file.
+Only necessary files will be packed.
+
+We don't need for `.crx` and keys,
+[Developer Dashboard](https://chrome.google.com/webstore/devconsole) now does it automatically.
+
 ## Credentials
 
 *   [Main icon](https://www.flaticon.com/free-icon/refresh_189686)
