@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Reload on Focus Extension Options</title>
+
+		<link rel="stylesheet" href="../styles/options.css" />
+
+		<script src="../scripts/options.js"></script>
+	</head>
+	<body>
+		<h2>Reload on Focus <small>Extension Options</small></h2>
+
+		<form name="options">
+			<label>
+				URLs:
+
+				<textarea
+					name="urls"
+					placeholder="Write URLs one per line..."
+					cols="70"
+					rows="10"
+					spellcheck="false"
+				></textarea>
+
+				<small>You can use <code>*</code> for matching a set of any characters.</small>
+			</label>
+
+			<button type="submit">Save</button>
+		</form>
+	</body>
+</html>

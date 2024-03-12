@@ -1,0 +1,39 @@
+body {
+	font-size: 18px;
+
+	& > h1,
+	& > h2,
+	& > h3 {
+		& > small {
+			font-weight: normal;
+		}
+	}
+
+	& textarea {
+		font-size: 17px;
+	}
+
+	& button {
+		font-size: inherit;
+	}
+
+	& form[name="options"] {
+		& label {
+			font-weight: bold;
+
+			* {
+				font-weight: normal;
+			}
+		}
+
+		& textarea[name="urls"] {
+			display: block;
+			margin-top: 0.4em;
+		}
+
+		& button[type="submit"] {
+			display: block;
+			margin-top: 1em;
+		}
+	}
+}
