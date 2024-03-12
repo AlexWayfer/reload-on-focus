@@ -1,0 +1,7 @@
+extends:
+  - stylelint-config-standard
+  - '@stylistic/stylelint-config'
+
+rules:
+  '@stylistic/indentation':
+    - tab

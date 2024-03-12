@@ -15,6 +15,17 @@ Examples:
 *   A feed/board/forum like Reddit.
 *   An order/delivery page with tracking; if URL has order number — just use path glob.
 
+## Development
+
+### Setup
+
+1.  Install [`pnpm`](https://pnpm.io/).
+2.  Run `pnpm install`.
+
+### Linting
+
+`pnpm run lint` to lint docs, styles and scripts.
+
 ## Credentials
 
 *   [Main icon](https://www.flaticon.com/free-icon/refresh_189686)
