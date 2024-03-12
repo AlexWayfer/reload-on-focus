@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Reload on Focus",
-	"version": "0.1",
+	"version": "1.0",
 
 	"description": "Reload tabs with matching URLs when they receive focus",
 	"icons": {
