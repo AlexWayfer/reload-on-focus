@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async _event => {
 	const optionsForm = document.forms.options
 
-	optionsForm.urls.value = (await chrome.storage.sync.get('urls')).urls
+	optionsForm.urls.value = (await chrome.storage.sync.get({ urls: '' })).urls
 
 	optionsForm.addEventListener('submit', event => {
 		event.preventDefault()
