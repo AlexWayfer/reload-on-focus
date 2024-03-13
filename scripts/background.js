@@ -21,6 +21,8 @@ const isTabUrlMatching = async (tab, options) => {
 	options ??= await getOptions()
 
 	return options.urls.split('\n').some(url => {
+		url = url.trim()
+
 		const regexp = new RegExp(`^${escapeRegexp(url).replace('\\*', '.*')}$`)
 		// console.debug('regexp = ', regexp)
 		return regexp.test(tab.url)
