@@ -2,6 +2,12 @@
 
 Chrome extension which reloads tabs with matching URLs when they receive focus (becomes active).
 
+<p>
+	<a target="_blank" href="https://chromewebstore.google.com/detail/reload-on-focus/dmgfafnjghbbkmeibdmookfnadodgmgg" >
+		<img src="images/chrome-web-store.png" alt="Chrome Web Store" width="200" />
+	</a>
+</p>
+
 ## Description
 
 Open extension's options after installation. There you can specify URLs to watch for focus.
