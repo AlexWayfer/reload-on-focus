@@ -21,6 +21,12 @@ body {
 		padding: 0.2em 0.6em;
 	}
 
+	& code {
+		background: #e5e5e5;
+		padding: 0.12em 0.24em;
+		border-radius: 0.2em;
+	}
+
 	& form[name="options"] {
 		& > label {
 			display: block;
