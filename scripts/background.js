@@ -23,6 +23,8 @@ const isTabUrlMatching = async (tab, options) => {
 	return options.urls.split('\n').some(url => {
 		url = url.trim()
 
+		if (url == '') return false
+
 		const regexp = new RegExp(`^${escapeRegexp(url).replace('\\*', '.*')}$`)
 		// console.debug('regexp = ', regexp)
 		return regexp.test(tab.url)
