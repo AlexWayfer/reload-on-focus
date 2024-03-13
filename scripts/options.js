@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async _event => {
 
 		// console.debug('event.target.urls.value = ', event.target.urls.value)
 
-		if (!optionsForm.urls.value.endsWith('\n')) optionsForm.urls.value += '\n'
+		optionsForm.urls.value = optionsForm.urls.value.replace(/\n*$/, '\n')
 
 		const options = (await chrome.storage.sync.get('options')).options
 		options.urls = optionsForm.urls.value
