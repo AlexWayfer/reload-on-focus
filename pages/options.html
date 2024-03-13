@@ -12,7 +12,7 @@
 
 		<form name="options">
 			<label>
-				URLs:
+				<strong>URLs:</strong>
 
 				<textarea
 					name="urls"
@@ -23,6 +23,11 @@
 				></textarea>
 
 				<small>You can use <code>*</code> for matching a set of any characters.</small>
+			</label>
+
+			<label>
+				<strong>Threshold:</strong>
+				<input type="number" name="threshold" min="0" size="3" required /> seconds
 			</label>
 
 			<button type="submit">Save</button>

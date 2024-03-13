@@ -9,26 +9,32 @@ body {
 		}
 	}
 
-	& textarea {
-		font-size: 17px;
+	& textarea,
+	& input[type="text"],
+	& input[type="number"] {
+		font-size: 0.96em;
+		padding: 0.3em 0.5em;
 	}
 
 	& button {
-		font-size: inherit;
+		font-size: 1.1em;
+		padding: 0.2em 0.6em;
 	}
 
 	& form[name="options"] {
-		& label {
-			font-weight: bold;
-
-			* {
-				font-weight: normal;
-			}
+		& > label {
+			display: block;
+			margin: 1.2em 0;
 		}
 
 		& textarea[name="urls"] {
 			display: block;
 			margin-top: 0.4em;
+		}
+
+		& input[name="threshold"] {
+			width: 3em;
+			text-align: right;
 		}
 
 		& button[type="submit"] {

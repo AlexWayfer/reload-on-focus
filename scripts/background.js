@@ -1,3 +1,26 @@
+const getOptions = async () => {
+	return (await chrome.storage.sync.get({ options: {} })).options
+}
+
+const getLoadingTabs = async () => {
+	return (await chrome.storage.local.get({ loadingTabs: {} })).loadingTabs
+}
+
+chrome.runtime.onInstalled.addListener(async _details => {
+	const options = await getOptions()
+	options.urls ??= ''
+	options.threshold ??= 60
+	chrome.storage.sync.set({ options })
+})
+
+const isTabUrlMatching = async (tab, options) => {
+	options ??= await getOptions()
+
+	return options.urls.split('\n').some(url => {
+		return tab.url === url
+	})
+}
+
 const actionOnFocus = async () => {
 	const activeTab = (await chrome.tabs.query({ active: true, currentWindow: true }))[0]
 
@@ -6,13 +29,18 @@ const actionOnFocus = async () => {
 
 	if (!activeTab) return
 
-	const urls = (await chrome.storage.sync.get({ urls: '' })).urls
+	const options = await getOptions()
 
-	urls.split('\n').forEach(url => {
-		if (activeTab.url == url) {
+	if (await isTabUrlMatching(activeTab, options)) {
+		const loadingTabs = await getLoadingTabs()
+
+		if (
+			(!loadingTabs[activeTab.id]) ||
+				(Date.now() > loadingTabs[activeTab.id] + options.threshold * 1000)
+		) {
 			chrome.tabs.reload(activeTab.id)
 		}
-	})
+	}
 }
 
 chrome.tabs.onActivated.addListener(async activeInfo => {
@@ -31,4 +59,36 @@ chrome.windows.onFocusChanged.addListener(async windowId => {
 	// console.debug('windowId = ', windowId)
 
 	await actionOnFocus()
+})
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+	// console.debug('chrome.tabs.onUpdated')
+	// console.debug('changeInfo = ', changeInfo)
+
+	if (changeInfo.status === 'loading') {
+		const loadingTabs = await getLoadingTabs()
+
+		if (await isTabUrlMatching(tab)) {
+			loadingTabs[tabId] = Date.now()
+
+			chrome.storage.local.set({ loadingTabs })
+		} else if (loadingTabs[tabId]) {
+			delete loadingTabs[tabId]
+
+			chrome.storage.local.set({ loadingTabs })
+		}
+	}
+})
+
+chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+	// console.debug('chrome.tabs.onRemoved')
+	// console.debug('removeInfo = ', removeInfo)
+
+	const loadingTabs = await getLoadingTabs()
+
+	if (loadingTabs[tabId]) {
+		delete loadingTabs[tabId]
+
+		chrome.storage.local.set({ loadingTabs })
+	}
 })

@@ -1,25 +1,33 @@
 document.addEventListener('DOMContentLoaded', async _event => {
+	const options = (await chrome.storage.sync.get('options')).options
 	const optionsForm = document.forms.options
 
-	optionsForm.urls.value = (await chrome.storage.sync.get({ urls: '' })).urls
+	optionsForm.urls.value = options.urls
+	optionsForm.threshold.value = options.threshold
 
-	optionsForm.addEventListener('submit', event => {
+	optionsForm.addEventListener('submit', async event => {
 		event.preventDefault()
 
 		// console.debug('event.target.urls.value = ', event.target.urls.value)
 
-		if (!event.target.urls.value.endsWith('\n')) event.target.urls.value += '\n'
+		if (!optionsForm.urls.value.endsWith('\n')) optionsForm.urls.value += '\n'
 
-		chrome.storage.sync.set({ urls: event.target.urls.value })
+		const options = (await chrome.storage.sync.get('options')).options
+		options.urls = optionsForm.urls.value
+		options.threshold = optionsForm.threshold.value
+
+		chrome.storage.sync.set({ options })
 	})
 
-	optionsForm.urls.addEventListener('keydown', event => {
-		// console.debug('event.key = ', event.key)
-		// console.debug('event.code = ', event.code)
-		// console.debug('event.ctrlKey = ', event.ctrlKey)
-		if (event.ctrlKey && event.code === 'Enter') {
-			event.target.form.requestSubmit()
-		}
+	Array(optionsForm.urls, optionsForm.threshold).forEach(inputElement => {
+		inputElement.addEventListener('keydown', event => {
+			// console.debug('event.key = ', event.key)
+			// console.debug('event.code = ', event.code)
+			// console.debug('event.ctrlKey = ', event.ctrlKey)
+			if (event.ctrlKey && event.code === 'Enter') {
+				optionsForm.requestSubmit()
+			}
+		})
 	})
 
 	document.addEventListener('keydown', event => {
