@@ -13,11 +13,17 @@ chrome.runtime.onInstalled.addListener(async _details => {
 	chrome.storage.sync.set({ options })
 })
 
+const escapeRegexp = string => {
+	return string.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&')
+}
+
 const isTabUrlMatching = async (tab, options) => {
 	options ??= await getOptions()
 
 	return options.urls.split('\n').some(url => {
-		return tab.url === url
+		const regexp = new RegExp(`^${escapeRegexp(url).replace('\\*', '.*')}$`)
+		// console.debug('regexp = ', regexp)
+		return regexp.test(tab.url)
 	})
 }
 
