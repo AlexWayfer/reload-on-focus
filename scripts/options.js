@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', async _event => {
 		options.threshold = optionsForm.threshold.value
 
 		chrome.storage.sync.set({ options })
-	})
+	});
 
-	Array(optionsForm.urls, optionsForm.threshold).forEach(inputElement => {
+	[optionsForm.urls, optionsForm.threshold].forEach(inputElement => {
 		inputElement.addEventListener('keydown', event => {
 			// console.debug('event.key = ', event.key)
 			// console.debug('event.code = ', event.code)
