@@ -1,6 +1,12 @@
 body {
+	color-scheme: light dark;
+
+	/* color-scheme: only dark; */
+
 	padding: 0.8em;
 	font-size: 18px;
+	background-color: light-dark(#eee, #222);
+	color: light-dark(black, white);
 
 	& > h1,
 	& > h2,
@@ -12,24 +18,39 @@ body {
 
 	& textarea,
 	& input[type="text"],
+	& input[type="number"],
+	& button {
+		border: 1px solid light-dark(#888, #777);
+		border-radius: 5px;
+	}
+
+	& textarea,
+	& input[type="text"],
 	& input[type="number"] {
 		font-size: 0.96em;
 		padding: 0.3em 0.5em;
+		background-color: light-dark(#ececec, #333);
 	}
 
 	& button {
 		font-size: 1.1em;
 		padding: 0.2em 0.6em;
+		background-color: light-dark(#e8e8e8, #3c3c3c);
+		color: inherit;
+
+		&:active {
+			background-color: light-dark(#ddd, #464646);
+		}
 	}
 
 	& code {
-		background: #e5e5e5;
+		background: light-dark(#ddd, #555);
 		padding: 0.12em 0.24em;
 		border-radius: 0.2em;
 	}
 
 	& a {
-		color: mediumblue;
+		color: light-dark(mediumblue, cornflowerblue);
 	}
 
 	& > h2 {
