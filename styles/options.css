@@ -27,7 +27,13 @@ body {
 		border-radius: 0.2em;
 	}
 
+	& a {
+		color: mediumblue;
+	}
+
 	& form[name="options"] {
+		margin-bottom: 2em;
+
 		& > label {
 			display: block;
 			margin: 1.2em 0;
