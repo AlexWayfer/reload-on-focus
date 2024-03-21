@@ -21,7 +21,7 @@ Examples:
 
 *   A site with recommendations like Twitch.
 *   A feed/board/forum like Reddit.
-*   An order/delivery page with tracking; if URL has order number — just use path glob.
+*   An order/delivery page with tracking; if URL has order number — just use the wildcard (`*`).
 
 ## Development
 
