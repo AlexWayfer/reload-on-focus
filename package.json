@@ -2,7 +2,7 @@
 	"devDependencies": {
 		"@stylistic/stylelint-config": "^1.0.1",
 		"archiver": "^7.0.1",
-		"eslint": "^8.57.0",
+		"eslint": "^9.4.0",
 		"eslint-config-standard": "^17.1.0",
 		"remark-cli": "^12.0.0",
 		"remark-gfm": "^4.0.0",
