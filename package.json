@@ -1,6 +1,6 @@
 {
 	"devDependencies": {
-		"@stylistic/stylelint-config": "^1.0.1",
+		"@stylistic/stylelint-config": "^4.0.0",
 		"archiver": "^7.0.1",
 		"eslint": "^8.57.0",
 		"eslint-config-standard": "^17.1.0",
